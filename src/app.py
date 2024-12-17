@@ -1,13 +1,11 @@
 import customtkinter
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import cv2
 import threading
-from src.helpers.ploting import create_saved_plot
 from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
 import src.helpers.camera as camera
 import src.helpers.slm_screen as slm
+from src.helpers.ploting import plot_graph
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -48,29 +46,8 @@ class App(customtkinter.CTk):
         self.canvas = None
 
     def plot_graph(self):
-        P, Q = self.hg_frame.get_values()
-        WX, WY = self.grating_frame.get_values()
-        A, B = self.rect_frame.get_values()
-        W = self.waist_frame.get_value()
-
-        try:
-            p, q, wx, wy, a, b, w = int(P), int(Q), int(WX), int(WY), int(A), int(B), int(W)
-
-            buf = create_saved_plot(p, q, w, wx, wy, a, b)
-
-            fig, ax = plt.subplots()
-            ax.imshow(plt.imread(buf), cmap='gray')
-            plt.axis('off')
-
-            if self.canvas:
-                self.canvas.get_tk_widget().destroy()
-
-            self.canvas = FigureCanvasTkAgg(fig, master=self)
-            self.canvas.get_tk_widget().grid(row=0, column=1, rowspan=5, padx=10, pady=(10, 0))
-            self.canvas.draw()
-        except ValueError:
-            print("Please enter valid numerical values for the coefficients and parameters.")
-
+        plot_graph(self)
+        
     def start_camera(self):
         if not self.camera_running:
             self.camera_running = True
