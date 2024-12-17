@@ -167,4 +167,4 @@ class App(customtkinter.CTk):
     def on_exit(self):
         self.stop_camera()
         pygame.quit()
-        app.destroy()
+        self.destroy()
