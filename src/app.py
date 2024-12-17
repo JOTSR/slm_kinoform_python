@@ -3,12 +3,11 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import pygame
-from PIL import Image , ImageTk
-from pypylon import pylon
 import cv2
 import threading
 from src.helpers.ploting import create_saved_plot
 from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
+import src.helpers.camera as camera
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -138,32 +137,8 @@ class App(customtkinter.CTk):
             print("Please enter valid numerical values for the coefficients and parameters.")
 
     def capture_frames(self):
+        camera.capture_frames(self)
         
-        info = pylon.DeviceInfo()
-        info.SetDeviceClass("BaslerUsb")
-        self.camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateFirstDevice())
-        self.camera.Open()
-        self.camera.PixelFormat = "RGB8"
-        self.camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
-
-        try:
-            while self.camera_running and self.camera.IsGrabbing():
-                grabResult = self.camera.RetrieveResult(5000, pylon.TimeoutHandling_ThrowException)
-                if grabResult.GrabSucceeded():
-                    image = grabResult.Array
-                
-                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                    image = Image.fromarray(image)
-                    image_tk = ImageTk.PhotoImage(image)
-                  
-                    # self.image_label.configure(image=image_tk)
-                    # self.image_label.image = image_tk
-                grabResult.Release()
-        finally:
-            self.camera.StopGrabbing()
-            self.camera.Close()
-            self.camera = None
-
     def on_exit(self):
         self.stop_camera()
         pygame.quit()
