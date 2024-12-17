@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 12 10:23:34 2024
+"""UI to generate kinoform, manipulate SLM and capture camera."""
 
-@author: Tristan
-"""
+__author__ = "Clément Nadal, Johabis Baraille, Julien Oculi, Tristant Wawak"
 
 from src.app import App
 
