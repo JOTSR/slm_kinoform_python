@@ -8,7 +8,7 @@ def grating(wx, wy):
     Cy = (256 / wy) * (Max / two_pi)
     return lambda x, y: ((x % wx) * Cx + (y % wy) * Cy) % 256
 
-def kiniform(p, q, w):
+def kinoform(p, q, w):
     H_p = hermite(p)
     H_q = hermite(q)
     factor = np.sqrt(2) / w

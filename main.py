@@ -15,11 +15,11 @@ from PIL import Image , ImageTk
 from pypylon import pylon
 import cv2
 import threading
-from compute.draw import grating, kiniform, rect
+from compute.draw import grating, kinoform, rect
 
 def create_plot(p, q, w, wx, wy, a, b):
     pixels = []
-    kpe = kiniform(p, q, w)
+    kpe = kinoform(p, q, w)
     blaze = grating(wx, wy)
     crop = rect(a, b)
     ngridx = 1920
