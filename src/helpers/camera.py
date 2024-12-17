@@ -8,7 +8,6 @@ def capture_frames(app):
         info.SetDeviceClass("BaslerUsb")
         app.camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateFirstDevice())
         app.camera.Open()
-        app.camera.PixelFormat = "RGB8"
         app.camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
 
         try:
