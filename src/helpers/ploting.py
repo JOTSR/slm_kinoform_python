@@ -1,5 +1,5 @@
 from io import BytesIO
-from compute.draw import grating, kinoform, rect
+from src.compute.draw import grating, kinoform, rect
 import numpy as np
 from PIL import Image
 

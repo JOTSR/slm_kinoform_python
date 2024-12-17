@@ -7,8 +7,8 @@ from PIL import Image , ImageTk
 from pypylon import pylon
 import cv2
 import threading
-from helpers.ploting import create_saved_plot
-from widget.custom import CustomFrame, InputFrame, DoubleInputFrame
+from src.helpers.ploting import create_saved_plot
+from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
 
 class App(customtkinter.CTk):
     def __init__(self):
