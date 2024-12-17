@@ -1,0 +1,13 @@
+customtkinter==5.2.2
+matplotlib==3.9.2
+matplotlib-inline==0.1.6
+numpy==1.26.4
+opencv-python==4.10.0.84
+pandas==2.2.3
+pillow==10.3.0
+pipx==1.4.3
+pygame==2.6.1
+pypylon==4.0.0
+qtconsole==5.4.4
+QtPy==2.4.0
+scipy==1.13.1
