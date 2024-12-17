@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """UI to generate kinoform, manipulate SLM and capture camera."""
 
