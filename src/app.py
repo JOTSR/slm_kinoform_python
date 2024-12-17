@@ -6,6 +6,8 @@ from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
 import src.helpers.camera as camera
 import src.helpers.slm_screen as slm
 from src.helpers.ploting import plot_graph
+import time
+from queue import Queue
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -15,6 +17,11 @@ class App(customtkinter.CTk):
         self.configure(bg="#2e2e2e")
         self.camera_running = False
         self.camera = None
+        self.camera_canvas = customtkinter.CTkCanvas(self,width=250,height=250)
+        self.camera_canvas.grid(row = 4, column = 3, rowspan = 3 )
+
+        self.plot_label = customtkinter.CTkLabel(self)
+        self.plot_label.grid(row=0, column=2, rowspan=5, padx=10, pady=(10, 0))
 
         self.hg_frame = DoubleInputFrame(self, "Hermite Gauss Coefficients", "P Coefficient", "Q Coefficient")
         self.hg_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
@@ -43,7 +50,8 @@ class App(customtkinter.CTk):
         self.exit_button = customtkinter.CTkButton(self, text="Exit", command=self.on_exit)
         self.exit_button.grid(row = 6,column = 2, padx = 5,pady=(20,0))
 
-        self.canvas = None
+        self.plot_canvas = customtkinter.CTkCanvas(self,width=250,height=250) 
+        self.plot_canvas.grid(row = 0,column = 3,rowspan=3)
 
     def plot_graph(self):
         plot_graph(self)
@@ -54,7 +62,14 @@ class App(customtkinter.CTk):
             self.stop_button.configure(state="normal")
             self.start_button.configure(state="disabled")
             self.camera_thread = threading.Thread(target=self.capture_frames)
+            self.timestamp = time.perf_counter_ns()
+            self.fps = 10
+            self.photo = Queue()
             self.camera_thread.start()
+            self.image_update()
+
+    def image_update(self):
+        camera.image_update(self)
 
     def stop_camera(self):
         if self.camera_running:

@@ -1,7 +1,7 @@
 from io import BytesIO
 from src.compute.draw import grating, kinoform, rect
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
@@ -45,13 +45,11 @@ def plot_graph(app):
     try:
         p, q, wx, wy, a, b, w = int(P), int(Q), int(WX), int(WY), int(A), int(B), int(W)
         buf = create_saved_plot(p, q, w, wx, wy, a, b)
-        fig, ax = plt.subplots()
-        ax.imshow(plt.imread(buf), cmap='gray')
-        plt.axis('off')
-        if app.canvas:
-            app.canvas.get_tk_widget().destroy()
-        app.canvas = FigureCanvasTkAgg(fig, master=app)
-        app.canvas.get_tk_widget().grid(row=0, column=1, rowspan=5, padx=10, pady=(10, 0))
-        app.canvas.draw()
+        img = Image.open(buf)
+        img_tk = ImageTk.PhotoImage(img)
+        app.plot_label.configure(image=img_tk)
+        app.plot_label.image = img_tk
+        
     except ValueError:
         print("Please enter valid numerical values for the coefficients and parameters.")
+    
