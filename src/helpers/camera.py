@@ -1,5 +1,5 @@
 from pypylon import pylon
-from PIL import Image , ImageTk
+from PIL import Image, ImageTk
 import cv2
 import time
 
