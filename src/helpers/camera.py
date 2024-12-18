@@ -40,4 +40,3 @@ def image_update(app):
             app.camera_canvas.image = camImage_tk  
         except:
             pass
-            app.after(1, app.image_update)
