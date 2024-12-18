@@ -50,10 +50,10 @@ class App(customtkinter.CTk):
         self.eff_button.grid(row=7, column = 0, padx = 5, pady = (20,0))
                              
         self.label_RMS =  customtkinter.CTkLabel(self)
-        self.entry_label.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
+        self.label_RMS.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
         
         self.label_Eff = customtkinter.CTkLabel(self)
-        self.entry_label.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
+        self.label_Eff.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
 
         self.plot_canvas = customtkinter.CTkCanvas(self,width=350,height=350) 
         self.plot_canvas.grid(row = 0,column = 2,rowspan=3)
@@ -92,6 +92,9 @@ class App(customtkinter.CTk):
 
     def capture_frames(self):
         camera.capture_frames(self)
+
+    def efficiency_calcul(self):
+        efficiency_calcul(self)
         
     def on_exit(self):
         self.stop_camera()
