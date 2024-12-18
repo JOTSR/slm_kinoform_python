@@ -31,6 +31,8 @@ class App(customtkinter.CTk):
         self.waist_frame = InputFrame(self, "Waist Beam", "Beam Waist (w)")
         self.waist_frame.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
         
+        self.effiency_result = 
+        
         self.plot_button = customtkinter.CTkButton(self, text="Plot Kinoform", command=self.plot_graph)
         self.plot_button.grid(row=4, column=0, padx=10, pady=(20, 0))
 

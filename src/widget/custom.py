@@ -37,3 +37,11 @@ class DoubleInputFrame(CustomFrame):
 
     def get_values(self):
         return self.entry1.get(), self.entry2.get()
+
+class ValuePrinterFrame(CustomFrame):
+    def __init__(self,master,title):
+        super().__init__(master,title)
+        
+        self.output_label = customtkinter.CTkLabel(app, text="Value will appear here")
+        self.output_label.pack(pady=20)
+        

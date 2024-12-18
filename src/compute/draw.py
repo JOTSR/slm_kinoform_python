@@ -41,4 +41,7 @@ def efficiency (F_mn,K_mn,p,q,w):
     eff=A**2*np.sum(F_mn**2)/np.sum(K_mn**2)
     return eff
 
+#fonction d'applatissment des arrays d'arrays
 
+def flatten(xss):
+    return [x for xs in xss for x in xs]

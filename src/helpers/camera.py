@@ -3,13 +3,15 @@ from PIL import Image, ImageTk
 import cv2
 import time
 
+imagecool = None
+
 def capture_frames(app):
         info = pylon.DeviceInfo()
         info.SetDeviceClass("BaslerUsb")
         app.camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateFirstDevice())
         app.camera.Open()
         app.camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
-
+        
         try:
             while app.camera_running and app.camera.IsGrabbing():
                 currentTime = time.perf_counter_ns()
@@ -18,8 +20,8 @@ def capture_frames(app):
                 fpsLimit = currentTime - app.timestamp > 1e9 / app.fps
                 
                 if grabResult.GrabSucceeded() and fpsLimit:
-                    image = grabResult.Array
-                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                    imagecool = grabResult.Array
+                    image = cv2.cvtColor(imagecool, cv2.COLOR_BGR2RGB)
                     app.photo.put(image)
                     app.timestamp = time.perf_counter_ns()
                     image_update(app)
