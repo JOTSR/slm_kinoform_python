@@ -6,6 +6,7 @@ from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
 import src.helpers.camera as camera
 import src.helpers.slm_screen as slm
 from src.helpers.ploting import plot_graph
+from src.helpers.efficiency import efficiency_calcul
 import time
 from queue import Queue
 
@@ -35,7 +36,7 @@ class App(customtkinter.CTk):
 
         self.waist_frame = InputFrame(self, "Waist Beam", "Beam Waist (w)")
         self.waist_frame.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
-
+        
         self.plot_button = customtkinter.CTkButton(self, text="Plot Kinoform", command=self.plot_graph)
         self.plot_button.grid(row=4, column=0, padx=10, pady=(20, 0))
 
@@ -50,9 +51,18 @@ class App(customtkinter.CTk):
 
         self.exit_button = customtkinter.CTkButton(self, text="Exit", command=self.on_exit)
         self.exit_button.grid(row = 6,column = 2, padx = 5,pady=(20,0))
-
+        
+        self.eff_button = customtkinter.CTkButton(self, text = "Efficiency", command = self.efficiency_calcul)
+        self.eff_button.grid(row=7, column = 0, padx = 5, pady = (20,0))
+                             
         self.plot_canvas = customtkinter.CTkCanvas(self,width=250,height=250) 
         self.plot_canvas.grid(row = 0,column = 3,rowspan=3)
+        
+        self.label_RMS =  customtkinter.CTkLabel(self)
+        self.entry_label.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
+        
+        self.label_Eff = customtkinter.CTkLabel(self)
+        self.entry_label.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
 
     def plot_graph(self):
         plot_graph(self)

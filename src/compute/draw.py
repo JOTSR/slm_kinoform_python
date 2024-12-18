@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.special import hermite
+import math 
 
 def grating(wx, wy):
     Max = 2 * np.pi
@@ -24,4 +25,19 @@ def rect(a, b):
         return 1
     return pixels
 
+#fonction calcul RMS 
+
+def RMS(F_mn,K_mn):
+    area = 1920 * 1080
+    rms = (np.mean((np.abs(np.fft.fft(F_mn) - np.fft.fft(K_mn)) ** 2)/area/255))
+    return np.sqrt(rms)
+
+
+#fonction calcul de l'efficacité  
+
+def efficiency (F_mn,K_mn,p,q,w):
+    C= 2**(p+q)*math.factorial(p)*math.factorial(q)*np.pi*w**2/2
+    A = (1/C)*np.sum(K_mn*F_mn)
+    eff=A**2*np.sum(F_mn**2)/np.sum(K_mn**2)
+    return eff
 

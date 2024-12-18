@@ -6,7 +6,7 @@ Created on Wed Dec 18 10:14:19 2024
 @author: baraille
 """
 import numpy as np 
-
+import src.compute as comp
           
 def efficiency_calcul(app): 
       P, Q = app.hg_frame.get_values() 
@@ -16,8 +16,8 @@ def efficiency_calcul(app):
           K_mm = np.fft.ftt(app.canvas1.image)
           F_mm =np.fft.fft( app.canvas2.image)
           area = 1980 * 1020
-          rms = RMS(F_mm,K_mm,area)
-          E = efficiency(F_mm, K_mm, p, q, w)
+          rms = comp.RMS(F_mm,K_mm,area)
+          E = comp.efficiency(F_mm, K_mm, p, q, w)
           
           app.label_Eff.text = str(E)
           app.Label_RMS.text = str(rms)
