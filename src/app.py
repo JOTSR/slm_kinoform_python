@@ -18,12 +18,6 @@ class App(customtkinter.CTk):
         self.configure(bg="#2e2e2e")
         self.camera_running = False
         self.camera = None
-        
-        self.camera_canvas = customtkinter.CTkCanvas(self,width=250,height=250)
-        self.camera_canvas.grid(row = 4, column = 3, rowspan = 3 )
-
-        self.plot_canvas= customtkinter.CTkCanvas(self)
-        self.plot_canvas.grid(row=0, column=2, rowspan=5, padx=10, pady=(10, 0))
 
         self.hg_frame = DoubleInputFrame(self, "Hermite Gauss Coefficients", "P Coefficient", "Q Coefficient")
         self.hg_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
@@ -51,6 +45,7 @@ class App(customtkinter.CTk):
 
         self.exit_button = customtkinter.CTkButton(self, text="Exit", command=self.on_exit)
         self.exit_button.grid(row = 6,column = 2, padx = 5,pady=(20,0))
+<<<<<<< HEAD
         
         self.eff_button = customtkinter.CTkButton(self, text = "Efficiency", command = self.efficiency_calcul)
         self.eff_button.grid(row=7, column = 0, padx = 5, pady = (20,0))
@@ -63,6 +58,17 @@ class App(customtkinter.CTk):
         
         self.label_Eff = customtkinter.CTkLabel(self)
         self.entry_label.grid(row=8, column=0, padx=10, pady=(5, 0), sticky="w")
+=======
+
+        self.plot_canvas = customtkinter.CTkCanvas(self,width=350,height=350) 
+        self.plot_canvas.grid(row = 0,column = 2,rowspan=3)
+        self.plot_canvas.configure(bg= "black")
+        
+        self.camera_canvas = customtkinter.CTkCanvas(self,width=350,height=350)
+        self.camera_canvas.grid(row = 0, column = 5, rowspan = 3 )
+        self.camera_canvas.configure(bg= "black")
+
+>>>>>>> b597bce (modif canvas)
 
     def plot_graph(self):
         plot_graph(self)

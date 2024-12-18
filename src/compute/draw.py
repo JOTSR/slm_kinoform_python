@@ -41,3 +41,4 @@ def efficiency (F_mn,K_mn,p,q,w):
     eff=A**2*np.sum(F_mn**2)/np.sum(K_mn**2)
     return eff
 
+

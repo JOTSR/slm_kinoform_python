@@ -47,7 +47,7 @@ def plot_graph(app):
         buf = create_saved_plot(p, q, w, wx, wy, a, b)
         img = Image.open(buf)
         Image_tk = ImageTk.PhotoImage(img)  
-        app.plot_canvas.create_image(360, 270, image=Image_tk)
+        app.plot_canvas.create_image(175, 175, image=Image_tk)
         app.plot_canvas.image = Image_tk  
     except ValueError:
         print("Please enter valid numerical values for the coefficients and parameters.")
