@@ -23,3 +23,5 @@ def rect(a, b):
             return 0
         return 1
     return pixels
+
+

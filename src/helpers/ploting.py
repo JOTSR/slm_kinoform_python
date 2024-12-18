@@ -46,10 +46,9 @@ def plot_graph(app):
         p, q, wx, wy, a, b, w = int(P), int(Q), int(WX), int(WY), int(A), int(B), int(W)
         buf = create_saved_plot(p, q, w, wx, wy, a, b)
         img = Image.open(buf)
-        img_tk = ImageTk.PhotoImage(img)
-        app.plot_label.configure(image=img_tk)
-        app.plot_label.image = img_tk
-        
+        Image_tk = ImageTk.PhotoImage(img)  
+        app.plot_canvas.create_image(360, 270, image=Image_tk)
+        app.plot_canvas.image = Image_tk  
     except ValueError:
         print("Please enter valid numerical values for the coefficients and parameters.")
     
