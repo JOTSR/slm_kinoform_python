@@ -22,6 +22,7 @@ def capture_frames(app):
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                     app.photo.put(image)
                     app.timestamp = time.perf_counter_ns()
+                    image_update(app)
                 else:
                     time.sleep(1e-2)
                 grabResult.Release()
