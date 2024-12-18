@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """UI to generate kinoform, manipulate SLM and capture camera."""
 
-__author__ = "Clément Nadal, Johabis Baraille, Julien Oculi, Tristant Wawak"
+__author__ = "Clément Nadal, Johanis Baraille, Julien Oculi, Tristan Wawak"
 
 from src.app import App
 
