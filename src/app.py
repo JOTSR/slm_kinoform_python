@@ -2,13 +2,14 @@ import customtkinter
 import numpy as np
 import cv2
 import threading
-from src.widget.custom import CustomFrame, InputFrame, DoubleInputFrame
+from src.widget.custom import ValuePrinterFrame, CustomFrame, InputFrame, DoubleInputFrame
 import src.helpers.camera as camera
 import src.helpers.slm_screen as slm
 from src.helpers.ploting import plot_graph
 from src.helpers.efficiency import efficiency_calcul
 import time
 from queue import Queue
+from src.helpers.efficiency import E
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -31,7 +32,8 @@ class App(customtkinter.CTk):
         self.waist_frame = InputFrame(self, "Waist Beam", "Beam Waist (w)")
         self.waist_frame.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
         
-        self.effiency_result = 
+        self.effiency_result = ValuePrinterFrame(self,"Efficiency", E )
+        self.effiency_result.grid(row = 3 , column = 3, padx = 10 , pady = 10,sticky="nsew")
         
         self.plot_button = customtkinter.CTkButton(self, text="Plot Kinoform", command=self.plot_graph)
         self.plot_button.grid(row=4, column=0, padx=10, pady=(20, 0))

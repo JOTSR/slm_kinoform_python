@@ -27,8 +27,7 @@ def rect(a, b):
 
 #fonction calcul RMS 
 
-def RMS(F_mn,K_mn):
-    area = 1920 * 1080
+def RMS(F_mn,K_mn,area):
     rms = (np.mean((np.abs(np.fft.fft(F_mn) - np.fft.fft(K_mn)) ** 2)/area/255))
     return np.sqrt(rms)
 
