@@ -39,7 +39,15 @@ def image_update(app):
             camImage = app.photo.get_nowait()
             camImage = Image.fromarray(camImage)  
             camImage_tk = ImageTk.PhotoImage(camImage)  
-            app.camera_canvas.create_image(175, 175, image=camImage_tk)
+            app.camera_canvas.create_image(360, 270, image=camImage_tk)
             app.camera_canvas.image = camImage_tk  
         except:
             pass
+
+def update_exposure(app, value):
+    if app.camera == None:
+        return
+    try:
+        app.camera.ExposureTime.SetValue(2 ** value)
+    except:
+        pass

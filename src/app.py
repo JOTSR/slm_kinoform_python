@@ -67,6 +67,9 @@ class App(customtkinter.CTk):
         self.camera_canvas.grid(row = 0, column = 5, rowspan = 3 )
         self.camera_canvas.configure(bg= "black")
 
+        self.camera_brightness = customtkinter.CTkSlider(self, from_ = 0, to = 20, command=self.update_exposure)
+        self.camera_brightness.grid(row = 6, column = 3)
+
     def plot_graph(self):
         plot_graph(self)
         
@@ -96,6 +99,9 @@ class App(customtkinter.CTk):
 
     def capture_frames(self):
         camera.capture_frames(self)
+
+    def update_exposure(self, value):
+        camera.update_exposure(self, value)
 
     def efficiency_calcul(self):
         efficiency_calcul(self)
