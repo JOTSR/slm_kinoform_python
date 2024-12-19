@@ -69,6 +69,7 @@ class App(customtkinter.CTk):
 
         self.camera_brightness = customtkinter.CTkSlider(self, from_ = 0, to = 20, command=self.update_exposure)
         self.camera_brightness.grid(row = 6, column = 3)
+        self.photo_latest = None
 
     def plot_graph(self):
         plot_graph(self)

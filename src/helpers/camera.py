@@ -3,8 +3,6 @@ from PIL import Image, ImageTk
 import cv2
 import time
 
-imagecool = None
-
 def capture_frames(app):
         info = pylon.DeviceInfo()
         info.SetDeviceClass("BaslerUsb")
@@ -23,6 +21,7 @@ def capture_frames(app):
                     imagecool = grabResult.Array
                     image = cv2.cvtColor(imagecool, cv2.COLOR_BGR2RGB)
                     app.photo.put(image)
+                    app.photo_latest = image
                     app.timestamp = time.perf_counter_ns()
                     image_update(app)
                     

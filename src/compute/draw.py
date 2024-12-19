@@ -36,11 +36,26 @@ def RMS(F_mn,K_mn,area):
 
 def efficiency (F_mn,K_mn,p,q,w):
     C= 2**(p+q)*math.factorial(p)*math.factorial(q)*np.pi*w**2/2
-    A = (1/C)*np.sum(K_mn*F_mn)
-    eff=A**2*np.sum(F_mn**2)/np.sum(K_mn**2)
+    A = (1/C)*np.sum(mult_array(K_mn, F_mn))
+
+    F_mn_2 = map(F_mn, lambda pixel: pixel **2)
+    K_mn_2 = map(K_mn, lambda pixel: pixel **2)
+    eff=A**2*np.sum(F_mn_2)/np.sum(K_mn_2)
     return eff
 
 #fonction d'applatissment des arrays d'arrays
 
 def flatten(xss):
     return [x for xs in xss for x in xs]
+
+def mult_array(array1, array2):
+    result = []
+    for i in range(0, len(array1)):
+        result.append(array1[i] * array2[i])
+    return result
+
+def map(array, mapper):
+    result = []
+    for i in range(0, len(array)):
+        result.append(mapper(array[i]))
+    return result
