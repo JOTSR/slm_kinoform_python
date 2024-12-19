@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+
 def create_plot(p, q, w, wx, wy, a, b):
     pixels = []
     kpe = kinoform(p, q, w)
@@ -24,9 +25,10 @@ def create_plot(p, q, w, wx, wy, a, b):
 
     return np.array(pixels)
 
+
 def create_saved_plot(p, q, w, wx, wy, a, b):
     image_2d = create_plot(p, q, w, wx, wy, a, b)
-    
+
     img = Image.fromarray(image_2d.astype(np.uint8), 'L')
 
     img = img.convert("RGBA")
@@ -34,8 +36,9 @@ def create_saved_plot(p, q, w, wx, wy, a, b):
     buf = BytesIO()
     img.save(buf, format="PNG")
     buf.seek(0)
-    
+
     return buf
+
 
 def plot_graph(app):
     P, Q = app.hg_frame.get_values()
@@ -43,12 +46,14 @@ def plot_graph(app):
     A, B = app.rect_frame.get_values()
     W = app.waist_frame.get_value()
     try:
-        p, q, wx, wy, a, b, w = int(P), int(Q), int(WX), int(WY), int(A), int(B), int(W)
+        p, q, wx, wy, a, b, w = int(P), int(Q), int(WX), int(WY), int(A), int(
+            B), int(W)
         buf = create_saved_plot(p, q, w, wx, wy, a, b)
         img = Image.open(buf)
-        Image_tk = ImageTk.PhotoImage(img)  
+        Image_tk = ImageTk.PhotoImage(img)
         app.plot_canvas.create_image(175, 175, image=Image_tk)
-        app.plot_canvas.image = Image_tk  
+        app.plot_canvas.image = Image_tk
     except ValueError:
-        print("Please enter valid numerical values for the coefficients and parameters.")
-    
+        print(
+            "Please enter valid numerical values for the coefficients and parameters."
+        )
